@@ -1,0 +1,62 @@
+body {
+    font-size: inherit;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+    color: $color-grey-dark-3;
+    font-weight: 400;
+}
+
+.heading__primary {
+
+    &--main {
+        font-size: 5rem;
+        color: $color-white;
+        font-weight: 700;
+        letter-spacing: 4px;
+        word-spacing: 1rem;
+    }
+
+    &--sub {
+        font-size: 2.6rem;
+        color: $color-white;
+    }
+}
+
+.heading-2 {
+    color: $color-white;
+    font-size: 4rem;
+}
+
+.heading-3 {
+    font-size: 3rem;
+    color: $color-white;
+    text-align: center;
+    font-weight: 900;
+
+    &--dark {
+        font-weight: 700;
+        color: $color-grey-dark-3;
+        font-size: 2rem;
+        text-align: left;
+    }
+
+    &--light {
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+
+    &--small {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: $color-primary-light;
+        text-align: left;
+        padding: 0 2rem;
+    }
+}
+
+.heading {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
