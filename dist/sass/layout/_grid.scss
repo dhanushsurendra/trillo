@@ -92,7 +92,8 @@
         grid-row: 1 / 2;
         width: 100%;
         object-fit: cover;
-        height: auto;
+        object-position: center center;
+        height: 20rem;
         overflow: hidden;
     }
 

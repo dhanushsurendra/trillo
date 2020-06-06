@@ -141,20 +141,6 @@ body {
     background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
     color: #fff !important; }
 
-.btn-search {
-  border-radius: 100px;
-  background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
-  padding: 1rem 2rem;
-  border: none;
-  outline: none;
-  margin-top: 1rem;
-  color: #fff;
-  box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  font-weight: 500; }
-  .btn-search:active {
-    outline: none; }
-
 .btn-inline {
   color: #fff;
   font-size: 1.5rem;
@@ -359,7 +345,8 @@ body {
   .nav__logo {
     height: 3.5rem; }
   .nav__form {
-    flex: 0 0 35%; }
+    flex: 0 0 35%;
+    position: relative; }
   .nav__search-input {
     font-family: inherit;
     border: none;
@@ -367,30 +354,16 @@ body {
     background-color: #fff;
     padding: 1.5rem 3rem;
     border-radius: 100px;
-    width: 90%;
-    margin-right: auto;
-    transition: all 0.3s; }
+    width: 100%;
+    margin-right: auto; }
     .nav__search-input:focus {
-      outline: none;
-      width: 100%; }
+      outline: none; }
     .nav__search-input::-webkit-input-placeholder {
       font-size: 1.8rem; }
-  .nav__search {
-    width: 4.5rem;
-    height: 4.5rem;
-    border: none;
-    background-color: #FF3366;
-    border-radius: 100px;
-    margin-left: -4.5rem;
-    position: fixed;
-    transform: translateY(0.5px);
-    cursor: pointer; }
-    .nav__search:focus {
-      outline: none; }
-    .nav__search-icon {
-      height: 2rem;
-      width: 2rem;
-      fill: #fff; }
+  .nav__btn-icon {
+    height: 2rem;
+    width: 2rem;
+    fill: #fff; }
   .nav__list {
     list-style: none;
     display: flex; }

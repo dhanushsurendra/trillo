@@ -18,14 +18,16 @@
         <div class="nav__logo-box">
             <img src="img/logo-01.png " alt="Trillo logo" class="nav__logo">
         </div>
-        <form class="nav__form">
+
+        <div class="nav__form">
             <input type="text" placeholder="Search over a 150,000 hotels" class="nav__search-input">
-            <button type="submit" class="nav__search">
-                <svg class="nav__search-icon">
+            <a href="#search__results" class="nav__button">
+                <svg class="nav__button-icon">
                     <use xlink:href="img/sprite.svg#icon-search"></use>
                 </svg>
-            </button>
-        </form>
+            </a>
+        </div>
+
         <ul class="nav__list nav__list-left">
             <li class="nav__items--left"><a href="#home" class="nav__link nav__link--left nav__active">Home</a></li>
             <li class="nav__items--left"><a href="#contact" class="nav__link nav__link--left">Contact</a></li>
@@ -96,8 +98,10 @@
             </div>
         </section>
 
-        <section class="section-search">
+        <section class="section-search" id="search__results">
             <div class="grid__search">
+
+                <!--
                 <div class="grid__search-item">
                     <img src="img/australia.jpg" alt="Test 1" class="grid__search-img">
                     <svg class="grid__search-like">
@@ -289,9 +293,11 @@
                         <p>USA</p>
                     </div>
                 </div>
+            -->
             </div>
 
             <div class="results__pages">
+                <!--
                 <button class="btn-inline results__btn--prev">
                     <svg class="search__icon">
                         <use href="img/sprite.svg#icon-triangle-left"></use>
@@ -299,12 +305,14 @@
                     <span>Page 1</span>
                 </button>
                 <button class="btn-inline results__btn--next">
-                    <span>Page 3</span>
                     <svg class="search__icon">
                         <use href="img/sprite.svg#icon-triangle-right"></use>
                     </svg>
+                    <span>Page 3</span>
                 </button>
+            -->
             </div>
+
         </section>
 
         <section class="section-packages" id="packages">
@@ -452,6 +460,6 @@
             </div>
         </footer>
     </main>
-</body>
+<script src="js/bundle.js"></script></body>
 
 </html>

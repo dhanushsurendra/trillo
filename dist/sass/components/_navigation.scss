@@ -5,7 +5,7 @@
     position: fixed;
     display: flex;
     align-items: center;
-    box-shadow: 0 1rem 4rem rgba($color-black, .2);
+    box-shadow: 0 1rem 4rem rgba($color-black, 0.2);
     z-index: 1000;
 
     &__logo-box {
@@ -19,6 +19,7 @@
 
     &__form {
         flex: 0 0 35%;
+        position: relative;
     }
 
     &__search-input {
@@ -28,13 +29,11 @@
         background-color: $color-white;
         padding: 1.5rem 3rem;
         border-radius: 100px;
-        width: 90%;
+        width: 100%;
         margin-right: auto;
-        transition: all 0.3s;
 
         &:focus {
             outline: none;
-            width: 100%;
         }
 
         &::-webkit-input-placeholder {
@@ -42,25 +41,21 @@
         }
     }
 
-    &__search {
+    &__button {
+        text-decoration: none;
         width: 4.5rem;
         height: 4.5rem;
-        border: none;
         background-color: $color-primary-light;
         border-radius: 100px;
-        margin-left: -4.5rem;
-        position: fixed;
-        transform: translateY(0.5px);
-        cursor: pointer;
-
-        &:focus {
-            outline: none;
-        }
+        position: absolute;
+        right: 0;
+        transform: translateY(.05rem);
 
         &-icon {
             height: 2rem;
             width: 2rem;
             fill: $color-white;
+            transform: translateY(1rem) translateX(1.2rem);
         }
     }
 
