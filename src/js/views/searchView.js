@@ -26,14 +26,18 @@ const limitHotelTitle = (title, limit = 24) => {
     return title;
 }
 
-export const renderHotels = (hotels, image) => {
+export const renderHotels = (hotels, image, isLiked) => {
     const markup =
         `
-                <div class="grid__search-item" id="${hotels.id}">
-                    <img src=${image} alt="${hotels.name}"" class="grid__search-img">
-                    <svg class="grid__search-like">
-                        <use xlink:href="img/sprite.svg#icon-heart"></use>
-                    </svg>
+                <div class="grid__search-item" id="${hotels.id}" data-goto=${hotels.id}>
+                    <img src=${image} alt="${hotels.name}" class="grid__search-img">
+                    <a href="#${hotels.id}" class="grid__search-like">
+                        <div class="grid__search-like-box">
+                            <svg class="grid__search-like-icon">
+                                <use xlink:href="img/sprite.svg#icon-heart${isLiked ? '' : '-outlined'}" id=${hotels.id}a23></use>
+                            </svg>
+                        </div>
+                    </a>
                     <h3 class="grid__search-name">${limitHotelTitle(hotels.name)}</h3>
                     <div class="grid__search-location">
                         <svg class="grid__search-icon">
@@ -59,7 +63,9 @@ export const renderHotels = (hotels, image) => {
                         </svg>
                         <p>$${roomPricing(rating(), roomsAvailable(hotels.totalrooms), hotels.totalrooms)}</p>
                     </div>
+                    <a href="#${hotels.id}" class="grid__search-btn">Book Now</a>
                 </div>
+
     `
 
     elements.searchResults.insertAdjacentHTML('beforeend', markup);
@@ -93,11 +99,12 @@ const roomPricing = (rating, availableRooms, totalRooms) => {
 
 const createButton = (page, type) =>
     `
-    <button class="btn btn--pink btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
-    <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
-    <svg class="search__icon">
-            <use xlink:href="img/sprite.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
-    </svg>
+        <button class="btn btn--pink btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
+        <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+        <svg class="search__icon">
+                <use xlink:href="img/sprite.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+        </button>
     `
 
 const renderButton = (page, numResult, resPerPage) => {
@@ -119,6 +126,9 @@ const renderButton = (page, numResult, resPerPage) => {
 export const renderResults = (hotels, urls, page = 1, resPerPage = 9) => {
     const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
+
+    // slice the urls depending upon the page to get a result
+    //const sliceUrls = urls.slice(start, end);
     hotels.slice(start, end).forEach((el, index) => renderHotels(el, urls[index]));
     renderButton(page, hotels.length, resPerPage);
 }

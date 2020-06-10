@@ -25,6 +25,11 @@ body {
 .heading-2 {
     color: $color-white;
     font-size: 4rem;
+
+    &--light {
+        color: $color-primary-light;
+        font-size: 3.5rem;
+    }
 }
 
 .heading-3 {
@@ -52,6 +57,19 @@ body {
         text-align: left;
         padding: 0 2rem;
     }
+
+    &--popup {
+        font-size: 2.5rem;
+        color: $color-primary-light;
+        text-align: left;
+        font-weight: 500;
+        padding: 1.2rem 2rem;
+
+        &-dark {
+            color: $color-black;
+            font-weight: 500;
+        }
+    }
 }
 
 .heading {
@@ -59,4 +77,27 @@ body {
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.search__results-no {
+    color: $color-black;
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 5rem;
+}
+
+.heading-4 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: $color-black;
+
+    &--light {
+        color: $color-primary-light;
+        font-size: 2rem;
+    }
+
+    &--down {
+        transform: translateY(.6rem);
+    }
 }

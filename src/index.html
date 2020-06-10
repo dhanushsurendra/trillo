@@ -9,6 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
     <link rel="stylesheet" href="css/style.css">
     <title>Trillo | A Hotel Searching App</title>
 </head>
@@ -38,13 +39,62 @@
             </svg>
             <div class="nav__fav-badge">9+</div>
         </div>
+
+        <div class="likes__panel">
+            <ul class="likes__list">
+                <!--
+                <li>
+                    <a href="#" class="likes__link">
+                        <figure class="likes__fig">
+                            <img src="img/adventure-1.jpg" alt="#" class="likes__img">
+                        </figure>
+                        <div class="likes__data">
+                            <h4 class="likes__name">JW Marriot</h4>
+                            <p class="likes__price">$1500</p>
+                        </div>
+                        <svg class="likes__delete">
+                            <use xlink:href="img/sprite.svg#icon-trash"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="likes__link">
+                        <figure class="likes__fig">
+                            <img src="img/adventure-1.jpg" alt="#" class="likes__img">
+                        </figure>
+                        <div class="likes__data">
+                            <h4 class="likes__name">JW Marriot</h4>
+                            <p class="likes__price">$1500</p>
+                        </div>
+                        <svg class="likes__delete">
+                            <use xlink:href="img/sprite.svg#icon-trash"></use>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="likes__link">
+                        <figure class="likes__fig">
+                            <img src="img/adventure-1.jpg" alt="#" class="likes__img">
+                        </figure>
+                        <div class="likes__data">
+                            <h4 class="likes__name">JW Marriot</h4>
+                            <p class="likes__price">$1500</p>
+                        </div>
+                        <svg class="likes__delete">
+                            <use xlink:href="img/sprite.svg#icon-trash"></use>
+                        </svg>
+                    </a>
+                </li>
+            -->
+            </ul>
+        </div>
         <ul class="nav__list">
             <li class="nav__items--left"><a href="#" class="nav__link btn__nav-sign">Sign up</a></li>
             <li class="nav__items--left"><a href="#" class="nav__link btn__nav-login">Login</a></li>
         </ul>
     </nav>
 
-    <header class="header">
+    <header class="header" id="home">
         <div class="header__container">
             <h1 class="heading__primary">
                 <span class="heading__primary--main">Find The Best Hotel</span>
@@ -99,14 +149,36 @@
         </section>
 
         <section class="section-search" id="search__results">
+            <div class="search__results-heading">
+                <!--
+                <h2 class="heading-2 heading-2--light text-left">Search results for "hotel rooms"</h2>
+                <p class="search__results-no u-margin-top-smallest">415 results</p>
+                -->
+            </div>
+
+            <div class="pre-search__box">
+                <img src="img/pre-search.svg" alt="pre search" class="pre-search__img">
+                <h2 class="heading-2 heading-2--light text-center u-margin-top-small">Your search results will appear
+                    here!</h2>
+            </div>
+
+            <div class="search-no__result">
+                <img src="img/search-no__result.svg" alt="No result" class="search-no__result-img">
+                <h2 class="heading-2 heading-2--light text-center u-margin-top-small">No results! &#9785;</h2>
+            </div>
+
             <div class="grid__search">
 
-                <!--
-                <div class="grid__search-item">
+
+                <div class="grid__search-item" id="cl">
                     <img src="img/australia.jpg" alt="Test 1" class="grid__search-img">
-                    <svg class="grid__search-like">
-                        <use xlink:href="img/sprite.svg#icon-heart"></use>
-                    </svg>
+                    <a href="#" class="grid__search-like">
+                        <div class="grid__search-like-box">
+                            <svg class="grid__search-like-icon">
+                                <use xlink:href="img/sprite.svg#icon-heart"></use>
+                            </svg>
+                        </div>
+                    </a>
                     <h3 class="grid__search-name">Beautiful Familiy House</h3>
                     <div class="grid__search-location">
                         <svg class="grid__search-icon">
@@ -132,9 +204,11 @@
                         </svg>
                         <p>$15000</p>
                     </div>
+
+                    <a href="#popup" class="grid__search-btn">Book Now</a>
                 </div>
 
-                <div class="grid__search-item">
+                <div class="grid__search-item" id="close">
                     <img src="img/australia.jpg" alt="Test 1" class="grid__search-img">
                     <svg class="grid__search-like">
                         <use xlink:href="img/sprite.svg#icon-heart"></use>
@@ -164,9 +238,10 @@
                         </svg>
                         <p>USA</p>
                     </div>
+                    <a href="#popup" class="grid__search-btn">Book Now</a>
                 </div>
 
-                <div class="grid__search-item">
+                <div class="grid__search-item" id="close">
                     <img src="img/australia.jpg" alt="Test 1" class="grid__search-img">
                     <svg class="grid__search-like">
                         <use xlink:href="img/sprite.svg#icon-heart"></use>
@@ -196,8 +271,10 @@
                         </svg>
                         <p>USA</p>
                     </div>
+                    <a href="#popup" class="grid__search-btn">Book Now</a>
                 </div>
 
+                <!--
                 <div class="grid__search-item">
                     <img src="img/australia.jpg" alt="Test 1" class="grid__search-img">
                     <svg class="grid__search-like">
@@ -426,6 +503,12 @@
 
                     <div class="footer__icon">
                         <svg>
+                            <use xlink:href="img/sprite.svg#icon-slack"></use>
+                        </svg>
+                    </div>
+
+                    <div class="footer__icon">
+                        <svg>
                             <use xlink:href="img/sprite.svg#icon-linkedin"></use>
                         </svg>
                     </div>
@@ -459,6 +542,10 @@
                 <p class="footer__text u-margin-top-small">Copyrights &copy; 2020 Trillo. All rights resvered.</p>
             </div>
         </footer>
+        <div class="popup" id="popup">
+            
+
+        </div>
     </main>
 </body>
 

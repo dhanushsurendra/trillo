@@ -54,7 +54,7 @@
         color: $color-primary-light;
         font-size: 1.6rem;
         display: inline-block;
-        padding: .5rem 2rem;
+        padding: 0.5rem 2rem;
     }
 }
 
@@ -63,8 +63,8 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    grid-gap: 5rem;
-    grid-row-gap: 6rem;
+    grid-column-gap: 5rem;
+    grid-row-gap: 8rem;
 
     &-item {
         display: grid;
@@ -72,10 +72,9 @@
         grid-row-gap: 2rem;
         background-color: $color-white;
         border-radius: 2px;
-        transition: all .3s;
-        box-shadow: 0px 1.5rem 2rem rgba($color-black, .2);
+        transition: all 0.3s;
+        box-shadow: 0px 1rem 4rem rgba($color-black, 0.2);
         animation-fill-mode: backwards;
-        padding-bottom: 2rem;
 
         p {
             font-size: 1.5rem;
@@ -83,7 +82,7 @@
 
         &:hover {
             cursor: pointer;
-            transform: translateY(-2rem);
+            transform: translateY(-1rem);
         }
     }
 
@@ -98,14 +97,28 @@
     }
 
     &-like {
-        width: 2rem;
-        height: 2rem;
         grid-column: 2 / 3;
         grid-row: 1 / 2;
         justify-self: end;
-        fill: $color-grey-light-1;
         margin: 1rem;
         cursor: pointer;
+        text-decoration: none;
+
+        &-box {
+            width: 4.5rem;
+            height: 4.5rem;
+            background-image: $background-gradinet;
+            border-radius: 50%;
+        }
+
+        &-icon {
+            fill: $color-grey-light-1;
+            width: 3rem;
+            height: 3rem;
+            display: block;
+            margin: 0 auto;
+            transform: translateY(.8rem);
+        }
     }
 
     &-icon {
@@ -138,6 +151,17 @@
         padding: 2rem;
         align-items: start;
     }
+
+    &-btn {
+        width: 100%;
+        background-image: $background-gradinet;
+        text-decoration: none;
+        color: $color-white;
+        text-align: center;
+        grid-column: 1 / -1;
+        font-size: 2rem;
+        padding: 1rem 1.5rem;
+    }
 }
 
 .results__pages {
@@ -145,4 +169,25 @@
     padding: 0 3rem;
     display: flex;
     justify-content: center;
-  }
+}
+
+.pre-search {
+    &__img {
+        height: 30rem;
+        width: 100%;
+    }
+
+    &__box {
+        margin: 0 auto;
+    }
+}
+
+.search-no__result {
+    width: 100%;
+    display: none;
+    &-img {
+        height: 30rem;
+        display: block;
+        margin: 0 auto;
+    }
+}

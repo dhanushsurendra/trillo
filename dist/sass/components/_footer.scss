@@ -20,6 +20,13 @@
         height: 2rem;
         fill: $color-white;
         display: inline-block;
+        transition: all .2s;
+        cursor: pointer;
+
+        &:hover {
+            fill: $color-primary-light;
+            transform: scale(1.4);
+        }
     }
 
     &__icon {

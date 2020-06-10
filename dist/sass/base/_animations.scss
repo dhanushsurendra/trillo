@@ -1,0 +1,16 @@
+@keyframes expand {
+    0%  {
+        transform: scale(1);
+        fill: $color-white;
+    }
+
+    50%  {
+        transform: scale(1.2);
+        fill: $color-primary-light;
+    }
+
+    100%  {
+        transform: scale(1);
+        fill: $color-white;
+    }
+}
