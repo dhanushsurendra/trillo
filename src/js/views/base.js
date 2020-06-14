@@ -10,7 +10,11 @@ export const elements = {
     likeIconToggle: document.querySelector('.grid__search-like-icon'),
     likeIcon: document.querySelector('.nav__fav'),
     likesList: document.querySelector('.likes__list'),
-    navigation: document.querySelector('.nav')
+    navigation: document.querySelector('.nav'),
+    gridSearchBtn: document.querySelector('.grid__search-btn'),
+    popup: document.querySelector('.popup__parent'),
+    popupRoomPrice: document.querySelector('.popup__room-price'),
+    popupInputAdult: document.querySelector('.popup__input-adult'),
 
 }
 

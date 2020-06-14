@@ -1,13 +1,20 @@
-export const renderPopup = () => {
+import { elements } from "./base"
+
+export const clearPopup = () => {
+    elements.popup.innerHTML = '';
+}
+
+export const renderPopup = (popupDetails, image) => {
 
     const markup =
-     `
+        `
+     <div class="popup" id=${popupDetails.popupDetails.id}a99>
         <div class="popup__container">
         <div class="popup__left">
             <div class="popup__left--bottom">
-                <img src="img/adventure-3.jpg" alt="" class="popup__img">
+                <img src=${image} alt="" class="popup__img">
 
-                <a class="popup__location" href="#popup__right">
+                <a class="popup__location">
                     <svg class="popup__icon">
                         <use xlink:href="img/sprite.svg#icon-location"></use>
                     </svg>
@@ -15,7 +22,7 @@ export const renderPopup = () => {
 
                 <ul class="popup__social-icons">
                     <li>
-                        <a href="#">
+                        <a href=${popupDetails.popupDetails.social.instagram} target="_blank">
                             <svg class="popup__social-icon">
                                 <use xlink:href="img/sprite.svg#icon-twitter"></use>
                             </svg>
@@ -23,7 +30,7 @@ export const renderPopup = () => {
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="${popupDetails.popupDetails.social.facebook}" target="_blank">
                             <svg class="popup__social-icon">
                                 <use xlink:href="img/sprite.svg#icon-facebook"></use>
                             </svg>
@@ -37,36 +44,43 @@ export const renderPopup = () => {
                         <svg class="popup__icon">
                             <use xlink:href="img/sprite.svg#icon-star-full"></use>
                         </svg>
-                        <p class="popup__text">4.5</p>
+                        <p class="popup__text">${popupDetails.rating}</p>
                     </div>
 
                     <div class="popup__rating popup__icon-box">
                         <svg class="popup__icon">
                             <use xlink:href="img/sprite.svg#icon-phone"></use>
                         </svg>
-                        <p class="popup__text">+91 9108735100</p>
+                        <p class="popup__text">${popupDetails.popupDetails.phone}</p>
                     </div>
 
                     <div class="popup__ac popup__icon-box">
                         <svg class="popup__icon">
                             <use xlink:href="img/sprite.svg#icon-air"></use>
                         </svg>
-                        <p class="popup__text">5000 rooms of 8000 available</p>
+                        <p class="popup__text">${popupDetails.acRoom} of ${popupDetails.popupDetails.totalrooms}</p>
                     </div>
 
                     <div class="popup__no-ac popup__icon-box">
                         <svg class="popup__icon">
                             <use xlink:href="img/sprite.svg#icon-cross"></use>
                         </svg>
-                        <p class="popup__text">3000 rooms of 8000 available</p>
+                        <p class="popup__text">${popupDetails.nonAcRoom} of ${popupDetails.popupDetails.totalrooms}</p>
                     </div>
+
+                    <div class="popup__no-ac popup__icon-box">
+                    <svg class="popup__icon">
+                        <use xlink:href="img/sprite.svg#icon-add-to-list"></use>
+                    </svg>
+                    <p class="popup__text">${popupDetails.popupDetails.totalrooms}</p>
+                </div>
                 </div>
             </div>
 
             <div class="popup__left--top">
-                <img src="img/google-maps.jpg" alt="Maps" class="popup__img">
-                <div class="popup__cancel">
-                    <a href="#">
+                <div class="popup__img" id="popup__img"></div>
+                <div class="popup__cancel popup__cancel-map">
+                    <a>
                         <svg class="popup__cancel-icon">
                             <use xlink:href="img/sprite.svg#icon-cross"></use>
                         </svg>
@@ -76,7 +90,7 @@ export const renderPopup = () => {
         </div>
 
         <div class="popup__right" id="popup__right">
-            <h3 class="heading-3 heading-3--popup">JW Marriot</h3>
+            <h3 class="heading-3 heading-3--popup">${popupDetails.popupDetails.name}</h3>
             <div class="popup__cancel">
                 <a href="#close">
                     <svg class="popup__cancel-icon">
@@ -87,32 +101,15 @@ export const renderPopup = () => {
 
             <div class="popup__row">
                 <div class="popup__adults">
-                    <h4 class="heading-4">Adults:</h4>
+                    <h4 class="heading-4">No of People:</h4>
                     <div class="popup__adult-details">
-                        <button class="popup__buttons">
+                        <button class="popup__buttons popup__button-adult-decrease">
                             <svg>
                                 <use xlink:href="img/sprite.svg#icon-minus"></use>
                             </svg>
                         </button>
-                        <input type="number" class="popup__input" value="2" readonly>
-                        <button class="popup__buttons">
-                            <svg>
-                                <use xlink:href="img/sprite.svg#icon-plus"></use>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="popup__children">
-                    <h4 class="heading-4">Children:</h4>
-                    <div class="popup__adult-details">
-                        <button class="popup__buttons">
-                            <svg>
-                                <use xlink:href="img/sprite.svg#icon-minus"></use>
-                            </svg>
-                        </button>
-                        <input type="number" class="popup__input" value="2" readonly>
-                        <button class="popup__buttons">
+                        <input type="number" class="popup__input popup__input-adult" value="1" readonly min="1" max="5">
+                        <button class="popup__buttons popup__button-adult-increase" disabled>
                             <svg>
                                 <use xlink:href="img/sprite.svg#icon-plus"></use>
                             </svg>
@@ -121,27 +118,27 @@ export const renderPopup = () => {
                 </div>
 
                 <div class="popup__checkbox">
-                    <label class="popup__label heading-4 popup__align">Extra bed
+                    <label class="popup__label popup__label-bed heading-4 popup__align">Extra bed
                         <input type="checkbox" class="popup__checkbox-input">
                         <span class="popup__checkmark"></span>
-                        </label>
+                    </label>
                 </div>
             </div>
 
-            <div class="popup__row">
+            <div class="popup__row popup__dates">
                 <div class="popup__checkin">
                     <h4 class="heading-4">Check in:</h4>
-                    <input type="date" class="popup__input-date">
+                    <input type="date" class="popup__input-date popup__input-date-1">
                 </div>
 
                 <div class="popup__checkout">
                     <h4 class="heading-4">Check out:</h4>
-                    <input type="date" class="popup__input-date">
+                    <input type="date" class="popup__input-date popup__input-date-2">
                 </div>
 
                 <div class="popup__noOfDays">
-                    <h3 class="heading-4 heading-4--down">No of days:<span
-                            class="heading-4 heading-4--light">3</span></h3>
+                    <h3 class="heading-4 heading-4--down">No of days: <span
+                            class="heading-4 heading-4--light popup__values">1</span></h3>
                 </div>
             </div>
 
@@ -149,18 +146,18 @@ export const renderPopup = () => {
                 <h4 class="heading-4">Food:</h4>
                 <div class="popup__checkboxes">
                     <div class="popup__checkbox">
-                        <label class="popup__label">breakfast
+                        <label class="popup__label popup__label-breakfast">breakfast
                             <input type="checkbox" class="popup__checkbox-input">
                             <span class="popup__checkmark"></span>
                             </label>
                     </div>
                     <div class="popup__checkbox">
-                        <label class="popup__label">lunch
+                        <label class="popup__label popup__label-lunch">lunch
                             <input type="checkbox" class="popup__checkbox-input">
                             <span class="popup__checkmark"></span>
                             </label>
                     </div>
-                    <div class="popup__checkbox">
+                    <div class="popup__checkbox popup__label-dinner">
                         <label class="popup__label">dinner
                             <input type="checkbox" class="popup__checkbox-input">
                             <span class="popup__checkmark"></span>
@@ -173,17 +170,44 @@ export const renderPopup = () => {
                 <svg class="popup__icon">
                     <use xlink:href="img/sprite.svg#icon-price-tags"></use>
                 </svg>
-                <h4 class="heading-4">Price:
-                    <span class="heading-4 heading-4--light">$1500 (3 days)</span>
+                <h4 class="heading-4">Price: <span class="heading-4 heading-4--light popup__room-price">$${popupDetails.roomPrice}</span>
                 </h4>
                 <h4 class="popup__max"><sup>*</sup>Max 5 in room</h4>
             </div>
 
             <div class="popup__row">
-                <a href="#" class="btn btn--pink popup__btn">Book Now</a>
+                <a href="#close" class="btn btn--pink popup__btn">Book Now</a>
             </div>
         </div>
     </div>
+    </div>
 
     `
+
+    elements.popup.insertAdjacentHTML('afterbegin', markup);
 }
+
+export const updatePrice = () => {
+    const checkin = new Date(document.querySelector('.popup__input-date-1').value);
+    const checkout = new Date(document.querySelector('.popup__input-date-2').value);
+    if (parseInt(checkout - checkin) > 0) {
+        const days = parseInt((checkout - checkin) / (24 * 3600 * 1000));
+        console.log(days);
+        if (document.querySelector('.popup__input-date-2')) {
+            document.querySelector('.popup__values').textContent = days;
+            const newPrice = state.popup.updatePriceDays(days);
+            document.querySelector('.popup__room-price').textContent = newPrice;
+        } else {
+            document.querySelector('.popup__values').textContent = '?';
+        }
+    } else {
+        document.querySelector('.popup__values').textContent = '?';
+    }
+}
+/*
+const openMap = () => {
+    document.querySelector('#popup__img').style.transform = 'translateY(-100%)';
+}
+*/
+
+//AIzaSyA-plNVe_BISlUPKPzZYpJTWXhGJWaVgbM

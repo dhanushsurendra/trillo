@@ -1,14 +1,10 @@
-@mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media only screen and (max-width: 37.5em) { @content };
-    }
-    @if $breakpoint == tab-port {
-        @media only screen and (max-width: 56.25em) { @content };
-    }
-    @if $breakpoint == tab-land {
-        @media only screen and (max-width: 75em) { @content };
-    }
-    @if $breakpoint == big-desktop {
-        @media only screen and (min-width: 112.5em) { @content };  
-    }
+@mixin iconAlign {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    background-image: $background-gradinet;
+    right: 2rem;
+    border-radius: 50%;
+    z-index: 100;
+    cursor: pointer;
 }

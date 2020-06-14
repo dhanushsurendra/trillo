@@ -57,6 +57,7 @@
             height: 100%;
             position: absolute;
             top: 100%;
+            transition: all 0.5s;
         }
     }
 
@@ -83,7 +84,7 @@
         justify-content: center;
 
         & > * {
-            margin-left: 2rem;
+            margin-bottom: 2rem;
         }
     }
 
@@ -91,11 +92,14 @@
         position: absolute;
         top: 2rem;
         left: 2rem;
+        transition: all 0.5s;
+        cursor: pointer;
 
         svg {
             fill: $color-white;
-            transition: all 0.3s;
+            transition: all 0.5s;
             animation: expand 1s infinite;
+            cursor: pointer;
         }
     }
 
@@ -112,6 +116,7 @@
         width: 2rem;
         height: 2rem;
         transition: all 0.3s;
+        margin-left: 2rem;
 
         &:hover {
             transform: scale(1.2);
@@ -132,14 +137,13 @@
     }
 
     &__cancel {
-        position: absolute;
-        width: 3rem;
-        height: 3rem;
-        background-image: $background-gradinet;
+        @include iconAlign;
         top: 2rem;
-        right: 2rem;
-        border-radius: 50%;
-        z-index: 100;
+
+        &-map {
+            @include iconAlign;
+            top: 3rem;
+        }
 
         &-icon {
             fill: $color-white;
@@ -148,6 +152,7 @@
             display: block;
             margin: auto;
             transform: translateY(10%);
+            cursor: pointer;
         }
     }
 
@@ -173,6 +178,7 @@
         height: 3rem;
         border: none;
         background-image: $background-gradinet;
+        cursor: pointer;
 
         &:focus {
             outline: none;
@@ -213,8 +219,6 @@
 
             &:focus {
                 outline: none;
-                border: 2px solid $color-primary-light;
-                border-radius: 8px;
             }
         }
     }

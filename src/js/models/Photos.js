@@ -26,8 +26,11 @@ export default class Photos {
     }
 
     getCurrentImage(id) {
+        //console.log(id);
+        //this.results.forEach(el => console.log(el.id));
         const index = this.results.findIndex(el => el.id === id);
         const urls = this.getUrl();
+        //console.log(urls);
         return urls[index];
     }
 }

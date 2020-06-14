@@ -26,15 +26,18 @@ const limitHotelTitle = (title, limit = 24) => {
     return title;
 }
 
-export const renderHotels = (hotels, image, isLiked) => {
+
+// unique id's likes = k99, open popup = a99, get rating value = r99,
+//get availabe rooms = s99, price = p99, img = i99
+export const renderHotels = (hotels, image) => {
     const markup =
         `
-                <div class="grid__search-item" id="${hotels.id}" data-goto=${hotels.id}>
-                    <img src=${image} alt="${hotels.name}" class="grid__search-img">
-                    <a href="#${hotels.id}" class="grid__search-like">
+                <div class="grid__search-item" id="${hotels.id}">
+                    <img src=${image} alt="${hotels.name}" class="grid__search-img" id="${hotels.id}i99">
+                    <a href="#${hotels.id}" class="grid__search-like" data-goto=${hotels.id}>
                         <div class="grid__search-like-box">
                             <svg class="grid__search-like-icon">
-                                <use xlink:href="img/sprite.svg#icon-heart${isLiked ? '' : '-outlined'}" id=${hotels.id}a23></use>
+                                <use xlink:href="img/sprite.svg#icon-heart-outlined" id=${hotels.id}a23></use>
                             </svg>
                         </div>
                     </a>
@@ -43,27 +46,27 @@ export const renderHotels = (hotels, image, isLiked) => {
                         <svg class="grid__search-icon">
                             <use xlink:href="img/sprite.svg#icon-location"></use>
                         </svg>
-                        <p>${hotels.address.street}, <b>${hotels.address.city}</b></p>
+                        <p>${hotels.address.street}, ${hotels.address.city}</p>
                     </div>
                     <div class="grid__search-description">
                         <svg class="grid__search-icon">
                             <use xlink:href="img/sprite.svg#icon-description"></use>
                         </svg>
-                        <p>${roomsAvailable(hotels.totalrooms)} available</p>
+                        <p id=${hotels.id}s99>${roomsAvailable(hotels.totalrooms)} available</p>
                     </div>
                     <div class="grid__search-rating">
                         <svg class="grid__search-icon">
                             <use xlink:href="img/sprite.svg#icon-star-full"></use>
                         </svg>
-                        <p>${rating()}</p>
+                        <p id=${hotels.id}r99>${rating()}</p>
                     </div>
                     <div class="grid__search-price">
                         <svg class="grid__search-icon">
                             <use xlink:href="img/sprite.svg#icon-price-tags"></use>
                         </svg>
-                        <p>$${roomPricing(rating(), roomsAvailable(hotels.totalrooms), hotels.totalrooms)}</p>
+                        <p id=${hotels.id}p99>$${roomPricing(rating(), roomsAvailable(hotels.totalrooms), hotels.totalrooms)}</p>
                     </div>
-                    <a href="#${hotels.id}" class="grid__search-btn">Book Now</a>
+                    <a href="#${hotels.id}a99" class="grid__search-btn" data-itemid="${hotels.id}a99">Book Now</a>
                 </div>
 
     `
@@ -94,7 +97,7 @@ const roomsAvailable = totalRooms => {
 const roomPricing = (rating, availableRooms, totalRooms) => {
     const price = (availableRooms / totalRooms) + (rating * 25);
     const tax = 0.18 * price;
-    return Math.floor(price + tax);
+    return (price + tax).toFixed(2);
 }
 
 const createButton = (page, type) =>
@@ -126,9 +129,6 @@ const renderButton = (page, numResult, resPerPage) => {
 export const renderResults = (hotels, urls, page = 1, resPerPage = 9) => {
     const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
-
-    // slice the urls depending upon the page to get a result
-    //const sliceUrls = urls.slice(start, end);
     hotels.slice(start, end).forEach((el, index) => renderHotels(el, urls[index]));
     renderButton(page, hotels.length, resPerPage);
 }
