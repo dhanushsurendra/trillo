@@ -61,16 +61,15 @@
 
 .btn__nav {
     &-sign {
-        padding: 1rem 3rem;
-        background-color: $color-primary-light;
+        padding: 0.6rem 3rem;
         border-radius: 100px;
+        color: $color-primary-light !important;
+        border: 3px solid $color-primary-light;
         transition: all 0.3s;
 
         &:hover {
-            background-color: transparent;
-            color: $color-primary-light;
-            border: 3px solid currentColor;
-            padding: 0.6rem 3rem;
+            background-image: $background-gradinet;
+            color: $color-white !important;
         }
     }
 

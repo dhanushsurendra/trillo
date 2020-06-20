@@ -33,4 +33,7 @@ export default class Photos {
         //console.log(urls);
         return urls[index];
     }
+    getID() {
+        return this.results.map(el => el.id);
+    }
 }

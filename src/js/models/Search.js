@@ -1,5 +1,4 @@
 import axios from 'axios'
-import uniqid from 'uniqid';
 import { proxy } from '../config';
 import { displayNoResult } from '../views/base';
 
@@ -15,7 +14,7 @@ export default class search {
             this.results = res.data;
 
             this.results.forEach(el => {
-                el.id = uniqid();
+                //el.id = uniqid();
                 this.title = el.name;
                 this.address = `${el.address.street},${el.address.city}`
             });

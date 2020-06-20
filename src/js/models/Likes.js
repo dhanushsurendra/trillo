@@ -11,6 +11,7 @@ export default class Likes {
             address
         }
         this.likes.push(like);
+        console.log(this.likes.length);
         this.persistData();
         return like;
     }
@@ -26,7 +27,7 @@ export default class Likes {
     }
 
     getNumLikes() {
-        console.log(this.likes.length);
+        //console.log(this.likes.length);
         return this.likes.length;
     }
 

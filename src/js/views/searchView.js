@@ -11,7 +11,7 @@ export const clearResults = () => {
     elements.searchResPages.innerHTML = '';
 }
 
-const limitHotelTitle = (title, limit = 24) => {
+export const limitHotelTitle = (title, limit = 24) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
@@ -27,14 +27,14 @@ const limitHotelTitle = (title, limit = 24) => {
 }
 
 
-// unique id's likes = k99, open popup = a99, get rating value = r99,
-//get availabe rooms = s99, price = p99, img = i99
+// unique id's likes = k99, open popup = a99, get rating value = r99, like icon id = a23, renderLikeIcon = a99
+//get availabe rooms = s99, price = p99, img = i99, delete like = d99, unlike id = u99,
 export const renderHotels = (hotels, image) => {
     const markup =
         `
                 <div class="grid__search-item" id="${hotels.id}">
                     <img src=${image} alt="${hotels.name}" class="grid__search-img" id="${hotels.id}i99">
-                    <a href="#${hotels.id}" class="grid__search-like" data-goto=${hotels.id}>
+                    <a class="grid__search-like" data-goto=${hotels.id}a23>
                         <div class="grid__search-like-box">
                             <svg class="grid__search-like-icon">
                                 <use xlink:href="img/sprite.svg#icon-heart-outlined" id=${hotels.id}a23></use>

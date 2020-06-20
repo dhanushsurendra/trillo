@@ -550,15 +550,26 @@ body {
     height: 2.5rem;
     fill: #FF3366;
     margin-right: 1rem; }
+    .popup__icon-street-view {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: #FF3366;
+      margin-right: 1rem; }
   .popup__left {
-    width: 33.33333333%;
+    width: 40%;
     float: left;
     position: relative;
     height: 100%; }
     .popup__left--bottom {
       width: 100%;
       height: 100%; }
-    .popup__left--top {
+    .popup__left--top-1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 100%;
+      transition: all 0.5s; }
+    .popup__left--top-2 {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -582,16 +593,27 @@ body {
     list-style: none;
     justify-content: center; }
     .popup__social-icons > * {
-      margin-left: 2rem; }
+      margin-bottom: 2rem; }
   .popup__location {
     position: absolute;
     top: 2rem;
     left: 2rem;
-    transition: all .5s;
+    transition: all 0.5s;
     cursor: pointer; }
     .popup__location svg {
       fill: #fff;
-      transition: all .5s;
+      transition: all 0.5s;
+      animation: expand 1s infinite;
+      cursor: pointer; }
+  .popup__street-view {
+    position: absolute;
+    top: 2rem;
+    left: 6rem;
+    transition: all 0.5s;
+    cursor: pointer; }
+    .popup__street-view svg {
+      fill: #fff;
+      transition: all 0.5s;
       animation: expand 1s infinite;
       cursor: pointer; }
   .popup__details {
@@ -604,7 +626,8 @@ body {
     fill: #fff;
     width: 2rem;
     height: 2rem;
-    transition: all 0.3s; }
+    transition: all 0.3s;
+    margin-left: 2rem; }
     .popup__social-icon:hover {
       transform: scale(1.2);
       fill: #FF3366; }
@@ -614,18 +637,38 @@ body {
     object-fit: cover;
     z-index: 99; }
   .popup__right {
-    width: 66.66666667%;
+    width: 60%;
     float: left; }
   .popup__cancel {
     position: absolute;
     width: 3rem;
     height: 3rem;
     background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
-    top: 2rem;
     right: 2rem;
     border-radius: 50%;
     z-index: 100;
-    cursor: pointer; }
+    cursor: pointer;
+    top: 2rem; }
+    .popup__cancel-map {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
+      right: 2rem;
+      border-radius: 50%;
+      z-index: 100;
+      cursor: pointer;
+      top: 3rem; }
+    .popup__cancel-street-view {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
+      right: 2rem;
+      border-radius: 50%;
+      z-index: 100;
+      cursor: pointer;
+      top: 3rem; }
     .popup__cancel-icon {
       fill: #fff;
       width: 2.5rem;
@@ -647,7 +690,8 @@ body {
     width: 3rem;
     height: 3rem;
     border: none;
-    background-image: linear-gradient(to right bottom, #FF3366, #EB2F64); }
+    background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
+    cursor: pointer; }
     .popup__buttons:focus {
       outline: none; }
     .popup__buttons svg {
@@ -672,9 +716,7 @@ body {
       .popup__input-date:not(:last-child) {
         margin-right: 2rem; }
       .popup__input-date:focus {
-        outline: none;
-        border: 2px solid #FF3366;
-        border-radius: 8px; }
+        outline: none; }
   .popup__checkbox {
     display: flex; }
     .popup__checkbox:not(:last-child) {
@@ -875,7 +917,9 @@ body {
     grid-column: 1 / -1;
     font-size: 2rem;
     padding: 1rem 1.5rem;
-    height: 5rem; }
+    height: 5.5rem;
+    align-self: end;
+    justify-self: center; }
 
 .results__pages {
   margin-top: 3rem;

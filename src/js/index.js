@@ -1,19 +1,19 @@
 import Search from './models/Search';
 import Photos from './models/Photos';
 import Popup from './models/Popup';
+import Maps from './models/Maps';
+import { mapLink } from './config';
 import * as searchView from './views/searchView';
 import * as likesView from './views/likesView';
 import { elements, clearImage, showResultDetails, displayNoResult, clearNoResult, showPagination } from './views/base';
 import Likes from './models/Likes';
-import { clearPopup, renderPopup, updatePrice } from './views/popupView';
-import Maps from './models/Maps';
+import { clearPopup, renderPopup } from './views/popupView';
 
 const state = {};
 
 //search control
 const controlSearch = async () => {
-    //const query = searchView.getInput();
-    const query = 'singapore';
+    const query = searchView.getInput();
     searchView.clearResults();
     clearNoResult();
     //hideResultDetails();
@@ -49,11 +49,13 @@ const controlSearch = async () => {
             console.log(error);
         }
 
-        const searchID = state.search.getID();
+        const searchID = state.photos.getID();
+        //console.log(searchID);
 
         //to make the id of photo same as that of search result
-        state.photos.results.forEach((el, index) => {
+        state.search.results.forEach((el, index) => {
             el.id = searchID[index];
+            //console.log(el.id);
         });
 
         //get the image url
@@ -121,74 +123,80 @@ elements.gridSearch.addEventListener('click', e => {
     }
 });
 
-//const popupID = window.location.hash.replace('#', '');
-
-
-//state.likes = new Likes();
-//Likes controller
-const controlLikes = currentID => {
-
-    if (!state.likes) state.likes = new Likes();
-
-    //const id = window.location.hash.replace('#', '');
-    //console.log(typeof(currentID));
-    //console.log(currentID);
-
-
-    //the hotel is not liked, a new like is added
-    if (!state.likes.isLiked(currentID)) {
-        const newLike = state.likes.addLike(
-            currentID,
-            state.photos.getCurrentImage(currentID),
-            state.search.title,
-            state.search.address
-        )
-
-        //state.search.popupDetails(currentID);
-
-        /*
-        const icons = Array.from(document.querySelectorAll('.grid__search-like-icon use'));
-        icons.forEach(el => {
-            const ID = el.getAttribute('id');
-            if(ID === currentID) {
-
-            }
-        });
-        */
-
-        likesView.toggleLikeBtn(true, currentID);
-
-        //likesView.renderLike(newLike);
-    } else {
-        //already liked, remove the like
-
-        //removes from array
-        state.likes.deleteLike(currentID);
-
-        likesView.toggleLikeBtn(false, currentID);
-
-        //remove from Ui
-        //likesView.deleteLike(currentID);
-    }
-}
-
-//['hashchange'].forEach(event => window.addEventListener(event, controlLikes()));
-
-window.r = state;
-
 /*
 window.addEventListener('load', () => {
+
     state.likes = new Likes();
 
     state.likes.readStorage();
 
-    likesView.toggleLikeMenu(state.likes.getNumLikes());
+    document.querySelector('.nav__fav-badge').textContent = state.likes.getNumLikes();
 
-   // state.likes.likes.forEach(like => likesView.renderLike(like));
-});
+    if (state.likes.getNumLikes() > 0) {
+       // deleteLikeItem();
+    }
+
+    state.likes.likes.forEach(el => likesView.renderLike(el));
+})
 */
 
+//CONTROL LIKES
+
+const controlLikes = currentID => {
+
+    if (!state.likes) state.likes = new Likes();
+
+    console.log(state.likes.getNumLikes() + 1);
+
+    const newID = currentID.substr(0, currentID.length - 3);
+    console.log(currentID);
+
+    if (!state.likes.isLiked(currentID)) {
+
+        document.querySelector('.nav__fav-badge').textContent = state.likes.getNumLikes() + 1;
+
+        const newLike = state.likes.addLike(
+            currentID,
+            state.photos.getCurrentImage(newID),
+            state.search.getDetails(newID).name,
+            `${state.search.getDetails(newID).address.street}, ${state.search.getDetails(newID).address.city}`
+        )
+        console.log(newLike);
+        likesView.toggleLikeBtn(true, currentID);
+
+        likesView.renderLike(newLike);
+
+    } else {
+
+        document.querySelector('.nav__fav-badge').textContent = state.likes.getNumLikes() - 1;
+
+        state.likes.deleteLike(currentID);
+
+        likesView.toggleLikeBtn(false, currentID);
+        console.log(`${newID} passed from modify UI`);
+
+        likesView.deleteLike(newID);
+    }
+}
+
+elements.deleteLikeItem.addEventListener('click', e => {
+    if (e.target.matches('.likes__delete, .likes__delete *')) {
+       const id = e.target.closest('.likes__delete').dataset.id;
+       const newID = id.substr(0, id.length - 3);
+
+       likesView.deleteLikeItem(newID);
+
+       document.querySelector('.nav__fav-badge').textContent = state.likes.getNumLikes() - 1;
+
+       state.likes.deleteLike(newID.concat('a23'));
+
+       likesView.toggleLikeBtn(false, newID.concat('a23'));
+    }
+});
+
+window.r = state;
 //CONTROL POPUP
+
 const controlPopup = id => {
     const rating = document.getElementById(id + 'r99').textContent;
     const roomsAvailable = document.getElementById(id + 's99').textContent;
@@ -196,23 +204,35 @@ const controlPopup = id => {
     const url = document.getElementById(id + 'i99').getAttribute('src');
     const popupDetails = state.search.getDetails(id);
     state.popup = new Popup(popupDetails);
-    console.log(popupDetails);
     state.popup.getPopupDetails(rating, roomsAvailable, roomPrice);
+    const [latitude, longitude] = formatCordinates(
+        popupDetails.location.latitude,
+        popupDetails.location.longitude)
     state.maps = new Maps(
         id,
-        popupDetails.location.latitude,
-        popupDetails.location.longitude,
-        popupDetails.name);
+        latitude,
+        longitude,
+        popupDetails.name,
+        mapLink);
     state.maps.getMap();
+    // state.streetView = new StreetView(
+    //     id,
+    //     latitude,
+    //     longitude);
+    // state.streetView.getStreetMap();
     clearPopup();
     renderPopup(state.popup, url);
 }
 
 elements.popup.addEventListener('click', e => {
     if (e.target.matches('.popup__location, .popup__location *')) {
-        document.querySelector('.popup__left--top').style.top = '0%';
+        document.querySelector('.popup__left--top-1').style.top = '0%';
     } else if (e.target.matches('.popup__cancel-map, .popup__cancel-map *')) {
-        document.querySelector('.popup__left--top').style.top = '100%';
+        document.querySelector('.popup__left--top-1').style.top = '100%';
+    } else if (e.target.matches('.popup__street-view, .popup__street-view *')) {
+        document.querySelector('.popup__left--top-2').style.top = '0%';
+    } else if (e.target.matches('.popup__cancel-street-view, .popup__cancel-street-view *')) {
+        document.querySelector('.popup__left--top-2').style.top = '100%';
     } else if (e.target.matches('.popup__label-bed, .popup__label-bed *')) {
         if (e.target.checked) {
             const newPrice = state.popup.updateRoomPricing('bed');
@@ -280,4 +300,15 @@ const updatePriceDays = () => {
     } else {
         document.querySelector('.popup__values').textContent = '?';
     }
+}
+
+
+const formatCordinates = (longitude, latitude) => {
+    const lngArr = longitude.toString().split('.');
+    const lngShort = lngArr[1].substr(0, 6);
+    const lngNew = parseFloat(`${lngArr[0]}.${lngShort}`);
+    const latArr = latitude.toString().split('.');
+    const latShort = latArr[1].substr(0, 6);
+    const latNew = parseFloat(`${latArr[0]}.${latShort}`);
+    return [lngNew, latNew];
 }

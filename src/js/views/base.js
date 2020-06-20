@@ -15,6 +15,7 @@ export const elements = {
     popup: document.querySelector('.popup__parent'),
     popupRoomPrice: document.querySelector('.popup__room-price'),
     popupInputAdult: document.querySelector('.popup__input-adult'),
+    deleteLikeItem: document.querySelector('.likes__list')
 
 }
 

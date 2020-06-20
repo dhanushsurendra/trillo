@@ -3,7 +3,6 @@
     height: 7rem;
     background-color: rgba($color-white, 0.5) !important;
     position: absolute;
-    top: 0;
     display: flex;
     align-items: center;
     box-shadow: 0 1rem 4rem rgba($color-black, 0.2);
@@ -33,6 +32,8 @@
         border-radius: 100px;
         width: 100%;
         margin-right: auto;
+        color: $color-primary-light;
+        font-size: 1.3rem;
 
         &:focus {
             outline: none;
@@ -86,10 +87,14 @@
         border-bottom: 3px solid $color-primary-light;
     }
 
-    &__fav {
+    &__content {
         position: relative;
         margin: 0 auto;
         cursor: pointer;
+        padding: 2rem 0;
+    }
+
+    &__fav {
 
         &-icon {
             width: 3rem;
@@ -104,30 +109,28 @@
             background-color: $color-primary-light;
             border-radius: 100px;
             color: $color-white;
-            top: -18%;
+            top: 18%;
             right: -25%;
             text-align: center;
         }
     }
 }
 
-.nav__fav:hover+.likes__panel {
-    opacity: 1;
-    visibility: visible;
+.nav__content:hover .likes__panel {
+    display: block;
 }
 
 .likes {
     &__panel {
         position: absolute;
-        top: 7.5rem;
+        top: 7.2rem;
         right: 25%;
         background-color: $color-white;
         box-shadow: 0 1rem 4rem rgba($color-black, 0.2);
         width: 34rem;
         border-radius: 2px;
-        opacity: 0;
         box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
-        visibility: hidden;
+        display: none;
         transition: all .3s;
         padding: 1rem 0rem;
     }
