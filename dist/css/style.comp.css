@@ -165,15 +165,14 @@ body {
     transition: all 0.4s; }
 
 .btn__nav-sign {
-  padding: 1rem 3rem;
-  background-color: #FF3366;
+  padding: 0.6rem 3rem;
   border-radius: 100px;
+  color: #FF3366 !important;
+  border: 3px solid #FF3366;
   transition: all 0.3s; }
   .btn__nav-sign:hover {
-    background-color: transparent;
-    color: #FF3366;
-    border: 3px solid currentColor;
-    padding: 0.6rem 3rem; }
+    background-image: linear-gradient(to right bottom, #FF3366, #EB2F64);
+    color: #fff !important; }
 
 .btn__nav-login {
   padding: 0.6rem 3rem;
@@ -387,7 +386,6 @@ body {
   height: 7rem;
   background-color: rgba(255, 255, 255, 0.5) !important;
   position: absolute;
-  top: 0;
   display: flex;
   align-items: center;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
@@ -409,7 +407,9 @@ body {
     padding: 1.5rem 3rem;
     border-radius: 100px;
     width: 100%;
-    margin-right: auto; }
+    margin-right: auto;
+    color: #FF3366;
+    font-size: 1.3rem; }
     .nav__search-input:focus {
       outline: none; }
     .nav__search-input::-webkit-input-placeholder {
@@ -443,40 +443,39 @@ body {
     color: #FF3366;
     padding-bottom: 0.5rem;
     border-bottom: 3px solid #FF3366; }
-  .nav__fav {
+  .nav__content {
     position: relative;
     margin: 0 auto;
-    cursor: pointer; }
-    .nav__fav-icon {
-      width: 3rem;
-      height: 3rem;
-      fill: #fff; }
-    .nav__fav-badge {
-      position: absolute;
-      width: 1.8rem;
-      height: 1.8rem;
-      background-color: #FF3366;
-      border-radius: 100px;
-      color: #fff;
-      top: -18%;
-      right: -25%;
-      text-align: center; }
+    cursor: pointer;
+    padding: 2rem 0; }
+  .nav__fav-icon {
+    width: 3rem;
+    height: 3rem;
+    fill: #fff; }
+  .nav__fav-badge {
+    position: absolute;
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: #FF3366;
+    border-radius: 100px;
+    color: #fff;
+    top: 18%;
+    right: -25%;
+    text-align: center; }
 
-.nav__fav:hover + .likes__panel {
-  opacity: 1;
-  visibility: visible; }
+.nav__content:hover .likes__panel {
+  display: block; }
 
 .likes__panel {
   position: absolute;
-  top: 7.5rem;
+  top: 7.2rem;
   right: 25%;
   background-color: #fff;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.2);
   width: 34rem;
   border-radius: 2px;
-  opacity: 0;
   box-shadow: 0 0.8rem 5rem 2rem rgba(101, 90, 86, 0.1);
-  visibility: hidden;
+  display: none;
   transition: all .3s;
   padding: 1rem 0rem; }
 
@@ -945,7 +944,7 @@ body {
 .header {
   width: 100%;
   height: 100vh;
-  background-image: url("../img/hero-large.jpg");
+  background-image: url("../img/hero-small.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
